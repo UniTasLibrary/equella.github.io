@@ -1280,6 +1280,11 @@ The EBI has global settings that control the overall behavior of the application
 
 Global settings are stored in the ebi.properties file located in the EBI’s application folder on Windows and Linux and in ebi.app/Content/Resources/lib on Macintosh. If this file is not present when the EBI is first launched the EBI will automatically create it. Each global setting is of the form settingname = value and must be specified under a section of the form [sectionname]. For example:
 ```
-[State] settingsfile = C:\Users\jim\Documents\Upload_test.ebi [Configuration] loadlastsettingsfile = True attachmentmetadatatargets = True
+[State]
+settingsfile = C:\Users\jim\Documents\Upload_test.ebi
+
+[Configuration]
+loadlastsettingsfile = True
+attachmentmetadatatargets = True
 ```
 If a global setting is not present in ebi.properties a built-in default value is used. The EBI loads the global settings into memory upon launch. Thus, though changes to the global settings file can be made whilst the EBI is running the changes will only take effect when the EBI application is re-launched (i.e. shut down and restarted). Changes made to global settings via the Preferences dialog do not require a restart.
