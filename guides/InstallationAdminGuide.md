@@ -392,6 +392,9 @@ The arbitrary base URL can be entered in the Institution URL edit box. The Insti
 
 Installation of the openEQUELLA server is now complete. Login to the institution as the TLE_ADMINISTRATOR to administer and configure the institution.
 
+See related page for changing password ('equella') for 'demosysadmin' .
+https://github.com/equella/equella.github.io/blob/master/guides/AdditionalGeneralInfoHelp.md#reset-the-server-admin-pages-password
+
 ## openEQUELLA Configs
 
 Note: When using openEQUELLA on Windows and changing the equellaserver or equellaserver-config properties, you'll need to reinstall the service.
