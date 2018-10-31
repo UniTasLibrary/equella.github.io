@@ -387,7 +387,7 @@ The arbitrary base URL can be entered in the Institution URL edit box. The Insti
 7. Enter a unique Filestore folder name. This is optional; if a name is not entered a folder with a randomly generated name will be automatically generated for the institution in the path-to-equella\filestore\Institutions folder.
 8. Enter a new Admin password for the institution administrator. If left blank, the institution will inherit the password from the imported institution. (NOTE: This password is used to log in to the Institution using the TLE_ADMINISTRATOR login.)
 9. Confirm the password.
-10. Click Import new institution then click OK to confirm. An Importing… progress dialog that indicates the import progress is displayed. When the import is complete the Return of Institution Management button becomes active.
+10. Click Import new institution then click OK to confirm. An Importing… progress dialog that indicates the import progress is displayed. When the import is complete the Return to Institution Management button becomes active.
 11. Click Return to Institution Management to view the new institution on the Institutions page.
 
 Installation of the openEQUELLA server is now complete. Login to the institution as the TLE_ADMINISTRATOR to administer and configure the institution.
