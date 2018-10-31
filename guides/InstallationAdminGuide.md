@@ -365,10 +365,10 @@ The openEQUELLA Server administration account is hidden from casual users and is
 
 ## Import a New Institution
 
-TODO: How does one get an institution to import?
-
 1. Select Import institution from the navigation menu to display the Import new institution page
-2. Click Browse to select the institution zip file to import (e.g. institution-....tgz). 
+2. Click Browse to select the institution zip file to import (e.g. institution-....tgz)
+Note: If there is no current institution (for example on a test/demo server) download the test reference institution from https://github.com/equella/equella.github.io/blob/master/guides/6.4VanillaReferenceInstitution.tgz
+
 3. Click to start the import. The Import new institution page displays. 
 The Import New Institution page allows for arbitrary base URLs and the renaming of the institution.
 4. To continue the import, if multiple databases have been configured, click Select Database and select the required database in the Target database field. Otherwise the system defaults to the database set up during installation.
