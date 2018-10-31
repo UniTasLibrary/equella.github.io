@@ -60,7 +60,7 @@ These requirements are covered in the remainder of the documentation.
 All databases must be able to store character data using UTF-8 encoding.
 
 A database must be configured for use by openEQUELLA with openEQUELLA being the owner or having complete control of the database. That means the equella database user must have permission to create, modify and delete tables, indexes and constraints and to run, select, insert, delete and update queries. 
-
+Ensure the database user has a password.
 
 NOTE: When using multiple databases, only databases from one vendor may be used. For example, two Microsoft SQL Server databases could be used, but NOT a Microsoft SQL Server and a PostgreSQL Server database. The database vendor is selected when the openEQUELLA system is first installed, and the database configured during the openEQUELLA installation wizard is the default system database.
 
@@ -97,7 +97,7 @@ Installations using a PostgreSQL (8.0 or higher) database must create an openEQU
 These requirements are met by the following commands
 
 ```
-createuser --interactive equellauser
+createuser --interactive --pwprompt equellauser
 createdb -O equellauser -D pg_default -E UTF-8 equella
 ```
 
@@ -248,21 +248,19 @@ openEQUELLA provides files for installation that can be used on all platforms. T
 
 This information is required to successfully install openEQUELLA. Incomplete details will cause the installation to fail.
 
-### PLACEHOLDER FOR INSTRUCTIONS ON CREATING/OBTAINING INSTALLATION FILES FOR OPEN openEQUELLA VIA APEREO
-
-1.  ... In Progress...  Need to insert steps required to get install files 
-
 ### Begin openEQUELLA Installation 
 
 This procedure describes installing openEQUELLA using a graphical interface. The examples shown are using Windows although other GUIs such as X-windows will be similar. The wizard pages provide information on the required details. Read each page before entering information.
 
-1. PLACEHOLDER FOR WHERE THE INDIVIDUAL CAN DOWNLOAD THE equella-6.4-GAx Installer file.
-2. Extract the equella-installer-xxxx.zip file to a temporary directory.
+Note: It may be possible to install without requiring a GUI; see https://groups.google.com/a/apereo.org/d/msg/equella-users/v-MMOuoa7mk/UDbmSkKRAwAJ for discussion
+
+1. Download equella-installer-x.x.zip (substitute x for the current minor version) from https://github.com/equella/Equella/releases
+2. Extract the equella-installer-x.x.zip file to a temporary directory.
 3. Navigate to the installer temporary directory and double-click on the enterprise-install file to start the installation. 
-4. Click Next to display the Java Development Kit page.
-5. Click Browse and navigate to the directory in which the JDK is installed.
-6. Click Next to display the Install Directory page.
-7. Click Browser to select the location where openEQUELLA will be installed (e.g. ‘c:\equella’).
+4. Click Next to display the Java Development Kit selection screen.
+5. If unset or incorrect, click Browse and navigate to the directory in which the JDK is installed.
+6. Click Next to display the EQUELLA Install Directory page.
+7. If the path is incorrect, either type in an updated location or click "Browse" to select the location where openEQUELLA will be installed (e.g. ‘c:\equella’).
 8. Click Next to display the Database Server page.  The database server group and database type must be entered to configure openEQUELLA with an empty database ready for use. 
 9. Select the database type from the drop-down list (e.g. ‘SQL Server’). 
 10. Select a Database Server from the following options:
@@ -301,10 +299,11 @@ This procedure describes installing openEQUELLA using a graphical interface. The
 31. When completed select OK to confirm.
 32. openEQUELLA is now installed and the server is ready to be registered and started.
 
-### Register the openEQUELLA Server
+
+### Run openEQUELLA service
 
 #### To Register the openEQUELLA server as a Windows service
-1. Navigate to the Manager folder (the default installation folder is C drive :\openEQUELLA\manager). In the ‘config’ files, details for the services can be edited (this is optional.) The details that can be changed include: 
+1. Navigate to the Manager folder (the default installation folder is C:\openEQUELLA\manager). In the ‘config’ files, details for the services can be edited (this is optional). The details that can be changed include: 
 * logging properties
 * service names and descriptions 
 * whether the service should auto start.
@@ -326,7 +325,7 @@ Find the openEQUELLA services (by default the names are openEQUELLA App Server a
 The openEQUELLA server is now started but may take a few minutes to be operational.
 Once the server has been registered and started, the success of the installation can be checked by opening the Server administration account. 
 
-#### Linux Installations
+#### Run openEQUELLA service for UNIX like Installations
 1. To start the service, navigate to the openEQUELLA install directory, then the manager folder (e.g. path-to-equella/manager). From this folder, the server can be started by running the commands:
 ```
 ./manager start
@@ -352,7 +351,7 @@ Once the server has been started, the success of the installation can be checked
 
 ## openEQUELLA Server Administration Account
 
-The openEQUELLA Server administration account is hidden from casual users and is displayed by entering a special URL created from the server’s base URL. 
+The openEQUELLA Server administration account is hidden from casual users and is displayed by entering a special URL created from the server’s base URL. The exception to this is the 'first run' configuration page, for which no login is required.
 
 ### To open the Server administration account page
 1. Open a browser and enter the openEQUELLA address of the hosting server with 
@@ -365,11 +364,14 @@ The openEQUELLA Server administration account is hidden from casual users and is
 6.  When the initialization process is complete, the database status changes to ‘Online’. 
 
 ## Import a New Institution
+
+TODO: How does one get an institution to import?
+
 1. Select Import institution from the navigation menu to display the Import new institution page
 2. Click Browse to select the institution zip file to import (e.g. institution-....tgz). 
 3. Click to start the import. The Import new institution page displays. 
 The Import New Institution page allows for arbitrary base URLs and the renaming of the institution.
-4. To continue the importation, if multiple databases have been configured, click Select Database and select the required database in the Target database field. Otherwise the system defaults to the database set up during installation.
+4. To continue the import, if multiple databases have been configured, click Select Database and select the required database in the Target database field. Otherwise the system defaults to the database set up during installation.
 5. Enter an Institution name for the institution. The institution name must be unique for the openEQUELLA server.
 6. Enter an Institution URL for the institution. 
 Server administrators are able to give institutions an arbitrary base URL. This URL may contain a base URL context. For example, the following base URLs would be valid for institutions on the same server: 
@@ -437,19 +439,17 @@ These configurations should be used only with the utmost care.
 
 ### openEQUELLA URLs
 
-* openEQUELLA inst url/language/download/refresh : *Refreshes the language caches, but you'll have to hit it on each node*
+* openEQUELLA inst_url/language/download/refresh : *Refreshes the language caches, but you'll have to hit it on each node*
 
-* openEQUELLA inst url/access/sched
-uledtasksdebug.do: *Landing page of the scheduled tasks in openEQUELLA allows the tasks to be manually kicked off by clicking on the task link.*
+* openEQUELLA inst_url/access/scheduledtasksdebug.do : *Landing page of the scheduled tasks in openEQUELLA allows the tasks to be manually kicked off by clicking on the task link.*
 
-* openEQUELLA inst url/some
-openEQUELLA tree?$DEBUG$ : *Displays the supported and unsupported parameters. Also displays the section tree structure*
+* openEQUELLA inst_url/some openEQUELLA tree?$DEBUG$ : *Displays the supported and unsupported parameters. Also displays the section tree structure*
 
-* openEQUELLA inst url/logon.do?NO_AUTO_LOGIN : *Bypasses auth redirections, for example, for CAS, and presents the normal openEQUELLA login page. The =true is optional - the key just needs to be present.*
+* openEQUELLA inst_url/logon.do?NO_AUTO_LOGIN : *Bypasses auth redirections, for example, for CAS, and presents the normal openEQUELLA login page. The =true is optional - the key just needs to be present.*
 
-* openEQUELLA inst url/logon.do?NO_IP_LOGIN : *Bypasses IP login and presents the normal openEQUELLA login page. The =true is optional - the key just needs to be present.*
+* openEQUELLA inst_url/logon.do?NO_IP_LOGIN : *Bypasses IP login and presents the normal openEQUELLA login page. The =true is optional - the key just needs to be present.*
 
-* openEQUELLA inst url/logon.do?logout=true  : *Forces a user to log out.*
+* openEQUELLA inst_url/logon.do?logout=true  : *Forces a user to log out.*
 
 
 ## Manage Databases
